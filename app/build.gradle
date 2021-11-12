@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -29,15 +31,50 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
+    def lifecycleVersion = "2.4.0"
+    def archVersion = "2.1.0"
+    def robolectricVersion = "4.6"
+    def truthVersion = "1.1.3"
+    def androidXTestCoreVersion = "1.4.0"
+    def junitVersion = "4.12"
 
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    // Jetpack architectural components
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
+
+    // testing core
+    androidTestImplementation("androidx.test:core:$androidXTestCoreVersion")
+
+    //AndroidJUnitRunner and JUnit Rules
+    testImplementation("androidx.test:runner:$androidXTestCoreVersion")
+    testImplementation("androidx.test:rules:$androidXTestCoreVersion")
+    testImplementation("junit:junit:$junitVersion")
+
+    //Local test dependencies
+    // Robo-electric
+    testImplementation("org.robolectric:robolectric:$robolectricVersion")
+    // Instant task rul dependency for testing live data
+    testImplementation("androidx.arch.core:core-testing:$archVersion")
+    // Test assertions
+    testImplementation "com.google.truth:truth:$truthVersion"
+
+    testImplementation("io.mockk:mockk:1.4.1")
+
 }
