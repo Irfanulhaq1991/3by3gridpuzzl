@@ -30,18 +30,6 @@ import org.junit.runners.MethodSorters
 import java.util.concurrent.atomic.AtomicReference
 
 
-/**
-======TodoList=====
-1- grid is proper initialised
-2- All elements on the the grid visible
-3- tile can move
-4- game completion message showed
-5- tile can not mov message showed
-6- state is retained on activity rotation
-7- Acceptance test
- */
-
-
 @RunWith(AndroidJUnit4::class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class PuzzleUITest {
@@ -64,38 +52,15 @@ class PuzzleUITest {
     @Test
     fun `2- When Activity launches all grid cell should be visible`() {
         activityRule.moveToState(Lifecycle.State.RESUMED)
-        Espresso.onView(withId(R.id.gridRecyclerView)).check(ViewAssertions.matches(
+        onView(withId(R.id.gridRecyclerView)).check(ViewAssertions.matches(
             allChildren(isDisplayed()))
         )
-
     }
 
-//    @Test
-//    fun `3- When tile is moved it then there position should be swapped`() {
-//        onView(withId(R.id.gridRecyclerView))
-//            .perform(
-//                RecyclerViewActions.actionOnItemAtPosition<GridViewHolder>(5,
-//                    GeneralSwipeAction(
-//                        Swipe.FAST,
-//                        GeneralLocation.CENTER,
-//                        CoordinatesProvider { floatArrayOf(0F, 0F) },
-//                        Press.FINGER
-//                    )
-//                ))
-//    }
-//
-//    @Test
-//    fun `4- When game completed then a message should be displayed`() {
-//
-//    }
-//
-//    @Test
-//    fun `5- When a tile is at correct position then message should shown`() {
-//
-//    }
 }
 
 
+// Test helpers
 fun <T : Activity> ActivityScenarioRule<T>.getActivity(): T {
     val activityRef: AtomicReference<T> = AtomicReference()
     this.scenario.onActivity(activityRef::set)
