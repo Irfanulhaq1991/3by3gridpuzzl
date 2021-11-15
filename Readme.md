@@ -1,0 +1,14 @@
+### Description
+ - Architecture : MVVM
+ - state retaining: Android View Model
+ - publish subscribe: Live Data
+ - UI state management: Kotlin Seal Classes
+ - Testing Strategy : Inside-out TDD
+ - Test pyramid:
+     - Small tests : 7
+     - medium tests: 4
+     - large tests : 2
+ - Testing tools
+     - Espresso
+     - RoboElectric
+     - Truth assertion
