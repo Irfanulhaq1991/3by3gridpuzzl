@@ -6,9 +6,12 @@
  - Testing Strategy : Inside-out TDD
  - Test pyramid:
      - Small tests : 7
-     - medium tests: 4
-     - large tests : 2
+     - Medium tests: 4
+     - Large tests : 2
  - Testing tools
      - Espresso
      - RoboElectric
      - Truth assertion
+ - Testing enviroment
+     - Emulator
+     - JVM
