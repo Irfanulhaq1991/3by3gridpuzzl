@@ -29,7 +29,7 @@ class PuzzleViewModel(private val threeXThreeGrid: ThreeXThreeGrid) : ViewModel(
         event = if (isASwappable && isBSwappable) {
             val result = threeXThreeGrid.swap(a, b)
             val isGameCompleted = threeXThreeGrid.isGameCompleted()
-            if (isGameCompleted) PuzzleState.Completed else PuzzleState.Moved(result, true)
+            if (isGameCompleted) PuzzleState.Completed(result) else PuzzleState.Moved(result, true)
         } else
             PuzzleState.Moved(null, false)
 
@@ -47,9 +47,9 @@ class PuzzleViewModel(private val threeXThreeGrid: ThreeXThreeGrid) : ViewModel(
             val result = threeXThreeGrid.swap(a, b)
             threeXThreeGrid.getUnSolvedGrid().sort() // solved
             val isGameCompleted = threeXThreeGrid.isGameCompleted()
-            if (isGameCompleted) PuzzleState.Completed else PuzzleState.Moved(result, true)
+            if (isGameCompleted) PuzzleState.Completed(result) else PuzzleState.Moved(result, true)
         } else
-            PuzzleState.Moved(null, false)
+            PuzzleState.Moved(null,false,"Could not move")
         _eventEmitter.value = event
     }
 }
@@ -60,10 +60,10 @@ sealed class PuzzleState {
     data class Moved(
         val puzzleMov:Pair<Pair<Int, Int>, Pair<Int, Int>>?,
         val isMoved: Boolean = true,
-        val message: String = "Could be moved"
+        val message: String = ""
     ) : PuzzleState()
 
-    object Completed : PuzzleState()
+    data class Completed(val puzzleMov:Pair<Pair<Int, Int>, Pair<Int, Int>>?,val message:String = "Gam is Completed") : PuzzleState()
 }
 
 class PuzzleViewModelFactory(private val grid: ThreeXThreeGrid) : ViewModelProvider.Factory {

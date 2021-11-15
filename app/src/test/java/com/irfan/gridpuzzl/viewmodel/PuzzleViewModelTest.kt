@@ -91,8 +91,10 @@ class PuzzleViewModelTest {
         val unsolvedGrid = threeXThreeGrid.getUnSolvedGrid()
         val a = unsolvedGrid[0]
         val b = unsolvedGrid[unsolvedGrid.size - 1]
+        val expectedState = PuzzleState.Completed(Pair(Pair(unsolvedGrid.indexOf(b),a), Pair(unsolvedGrid.indexOf(a),b)))
+
         puzzleViewModel.swapAndComplete(a, b)
-        Truth.assertThat(puzzleViewModel.eventEmitter.getOrAwaitValue()).isEqualTo(PuzzleState.Completed)
+        Truth.assertThat(puzzleViewModel.eventEmitter.getOrAwaitValue()).isEqualTo(expectedState)
     }
 
 

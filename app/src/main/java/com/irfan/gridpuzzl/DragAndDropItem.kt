@@ -13,10 +13,7 @@ class DragAndDropItem(private val viewModel: PuzzleViewModel) : ItemTouchHelper.
 ) {
     private val oldPosition = AtomicReference<Int>()
     private val newPosition = AtomicReference<Int>()
-    fun attachRecyclerView(recyclerView: RecyclerView) {
-        val touchHelper = ItemTouchHelper(this)
-        touchHelper.attachToRecyclerView(recyclerView)
-    }
+
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -24,7 +21,7 @@ class DragAndDropItem(private val viewModel: PuzzleViewModel) : ItemTouchHelper.
         target: RecyclerView.ViewHolder
     ): Boolean {
         oldPosition.set(viewHolder.adapterPosition)
-        newPosition.set(viewHolder.adapterPosition)
+        newPosition.set(target.adapterPosition)
         return false
     }
 
@@ -35,7 +32,6 @@ class DragAndDropItem(private val viewModel: PuzzleViewModel) : ItemTouchHelper.
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
         viewModel.swap(oldPosition.get(), newPosition.get())
-       //moveItem(oldPosition.get(), newPosition.get())
     }
 
 

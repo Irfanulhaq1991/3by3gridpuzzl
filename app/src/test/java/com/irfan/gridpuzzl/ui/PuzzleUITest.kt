@@ -70,8 +70,8 @@ class PuzzleUITest {
 
     }
 
-    @Test
-    fun `3- When tile is moved it then there position should be swapped`() {
+//    @Test
+//    fun `3- When tile is moved it then there position should be swapped`() {
 //        onView(withId(R.id.gridRecyclerView))
 //            .perform(
 //                RecyclerViewActions.actionOnItemAtPosition<GridViewHolder>(5,
@@ -82,7 +82,7 @@ class PuzzleUITest {
 //                        Press.FINGER
 //                    )
 //                ))
-    }
+//    }
 //
 //    @Test
 //    fun `4- When game completed then a message should be displayed`() {

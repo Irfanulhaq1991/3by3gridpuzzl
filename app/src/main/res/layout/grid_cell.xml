@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgvTile"
-        android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:scaleType="fitCenter"
-        android:visibility="visible"
-        app:srcCompat="@drawable/img_1"
-        />
-
-</LinearLayout>
+<androidx.appcompat.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/imgvTile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scaleType="fitXY"
+    android:visibility="visible"
+    app:srcCompat="@drawable/img_1" />
