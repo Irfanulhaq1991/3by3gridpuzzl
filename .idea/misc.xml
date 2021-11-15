@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/source_code/puzzl/app/src/main/res/layout/grid_cell.xml" value="0.27870370370370373" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/grid_cell.xml" value="0.21467391304347827" />
       </map>

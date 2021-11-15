@@ -15,12 +15,13 @@ class ThreeXThreeGrid {
         return unSolvedGrid
     }
 
-    fun swap(a: Int, b: Int) {
-        if (solvedGrid[solvedGrid.size - 1] < a || a < solvedGrid[0] || solvedGrid[solvedGrid.size - 1] < b || b < solvedGrid[0]) return
+    fun swap(a: Int, b: Int):Pair<Pair<Int,Int>,Pair<Int,Int>>? {
+        if (solvedGrid[solvedGrid.size - 1] < a || a < solvedGrid[0] || solvedGrid[solvedGrid.size - 1] < b || b < solvedGrid[0]) return null
         val indexA = unSolvedGrid.indexOf(a)
         val indexB = unSolvedGrid.indexOf(b)
         unSolvedGrid[indexA] = b
         unSolvedGrid[indexB] = a
+        return Pair(Pair(indexB,a),Pair(indexA,b))
     }
 
     fun isGameCompleted(): Boolean {
@@ -30,13 +31,10 @@ class ThreeXThreeGrid {
         return true
     }
 
-    fun isSwappable(a: Int, b: Int): Boolean {
+    fun isSwappable(a: Int): Boolean {
         val unSolvedIndexOfA = unSolvedGrid.indexOf(a)
-        val unSolvedIndexOfB = unSolvedGrid.indexOf(b)
         val solvedIndexOfA = solvedGrid.indexOf(a)
-        val solvedIndexOfB = solvedGrid.indexOf(b)
-        val canSwap = unSolvedIndexOfA == solvedIndexOfA && unSolvedIndexOfB == solvedIndexOfB
-
+        val canSwap = unSolvedIndexOfA == solvedIndexOfA
         return !canSwap
     }
 

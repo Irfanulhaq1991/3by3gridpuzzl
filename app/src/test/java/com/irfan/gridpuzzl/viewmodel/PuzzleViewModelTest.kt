@@ -58,10 +58,14 @@ class PuzzleViewModelTest {
     @Test
     fun `2- When tags are moved then the tags are successfully swapped`() {
         val unsolvedGrid = threeXThreeGrid.getUnSolvedGrid()
+
+        val indexA = 0
+        val indexB =  unsolvedGrid.size - 1
         val a = unsolvedGrid[0]
         val b = unsolvedGrid[unsolvedGrid.size - 1]
-        val expectedState = PuzzleState.Moved(Pair(b, a))
-        puzzleViewModel.swap(a, b)
+        val expectedState = PuzzleState.Moved(Pair(Pair(unsolvedGrid.indexOf(b),a), Pair(unsolvedGrid.indexOf(a),b)))
+
+        puzzleViewModel.swap(indexA, indexB)
 
         val actualState = puzzleViewModel.eventEmitter.getOrAwaitValue()
         Truth.assertThat(actualState).isEqualTo(expectedState)

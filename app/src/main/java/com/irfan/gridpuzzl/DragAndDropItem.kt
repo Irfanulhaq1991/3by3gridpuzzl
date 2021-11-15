@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.concurrent.atomic.AtomicReference
 
 
-class DragAndDropItem(private val adaptor: GridAdaptor, private val viewModel: PuzzleViewModel) : ItemTouchHelper.SimpleCallback(
+class DragAndDropItem(private val viewModel: PuzzleViewModel) : ItemTouchHelper.SimpleCallback(
     ItemTouchHelper.UP or
             ItemTouchHelper.DOWN or
             ItemTouchHelper.LEFT or
@@ -34,7 +34,8 @@ class DragAndDropItem(private val adaptor: GridAdaptor, private val viewModel: P
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
-       // moveItem(oldPosition.get(), newPosition.get())
+        viewModel.swap(oldPosition.get(), newPosition.get())
+       //moveItem(oldPosition.get(), newPosition.get())
     }
 
 

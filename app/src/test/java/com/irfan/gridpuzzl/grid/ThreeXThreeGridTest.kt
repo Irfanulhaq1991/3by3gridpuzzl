@@ -52,9 +52,9 @@ class ThreeXThreeGridTest {
         val unSolvedGrid = grid3x3.getUnSolvedGrid()
         val a = unSolvedGrid[0]
         val b = unSolvedGrid[unSolvedGrid.size - 1]
-        grid3x3.swap(a, b)
-        val actualA = unSolvedGrid[unSolvedGrid.size - 1]
-        val actualB = unSolvedGrid[0]
+        val result = grid3x3.swap(a, b)
+        val actualA = unSolvedGrid[result?.first?.first?:-1]
+        val actualB = unSolvedGrid[result?.second?.first?:-1]
         Truth.assertThat(actualA).isEqualTo(a)
         Truth.assertThat(actualB).isEqualTo(b)
     }
@@ -112,12 +112,11 @@ class ThreeXThreeGridTest {
      */
 
     @Test
-    fun `can not swap when one number is on the correct position`(){
+    fun `can not swap when the number is on the correct position`(){
         val unSolvedGrid = grid3x3.getUnSolvedGrid()
         val a = 0
         unSolvedGrid[0] = a
-        val b = unSolvedGrid[unSolvedGrid.size - 1]
-        val result:Boolean  = grid3x3.isSwappable(a,b)
+        val result:Boolean  = grid3x3.isSwappable(a)
         Truth.assertThat(result).isFalse()
     }
 
