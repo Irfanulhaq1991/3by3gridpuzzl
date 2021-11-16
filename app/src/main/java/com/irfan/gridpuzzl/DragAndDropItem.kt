@@ -31,7 +31,12 @@ class DragAndDropItem(private val viewModel: PuzzleViewModel) : ItemTouchHelper.
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
-        viewModel.swap(oldPosition.get(), newPosition.get())
+        val isValidPositions = oldPosition.get() != null && newPosition.get() != null && oldPosition.get() != newPosition.get()
+
+        if (isValidPositions)
+            viewModel.swap(oldPosition.get(), newPosition.get())
+        oldPosition.set(null)
+        newPosition.set(null)
     }
 
 
