@@ -47,16 +47,9 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
 
         // observe change from view model
         viewModel.eventEmitter.observe(this, this)
-
-        if (savedInstanceState != null)
-            viewModel.getCurrentState()
+        viewModel.getCurrentState()
     }
 
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean("getCurrentState", true)
-        super.onSaveInstanceState(outState)
-    }
 
     override fun onChanged(t: PuzzleState?) {
         when (t) {

@@ -13,9 +13,7 @@ class PuzzleViewModel(private val threeXThreeGrid: ThreeXThreeGrid) : ViewModel(
     val eventEmitter: LiveData<PuzzleState>
         get() = _eventEmitter
 
-    init {
-        _eventEmitter.value = PuzzleState.Initialised(threeXThreeGrid.getUnSolvedGrid())
-    }
+
 
 
     fun getCurrentState(){
