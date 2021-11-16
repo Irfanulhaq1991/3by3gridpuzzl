@@ -1,18 +1,18 @@
 package com.irfan.gridpuzzl
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.DialogInterface
-import androidx.appcompat.app.AlertDialog
 
 
 class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutManger {
@@ -38,15 +38,25 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         gridRecyclerView.setHasFixedSize(true)
+
         gridRecyclerView.adapter = dataAdapter
+
+
         recyclerView = gridRecyclerView
         touchHelper.attachToRecyclerView(gridRecyclerView)
 
         // observe change from view model
         viewModel.eventEmitter.observe(this, this)
 
+        if (savedInstanceState != null)
+            viewModel.getCurrentState()
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("getCurrentState", true)
+        super.onSaveInstanceState(outState)
+    }
 
     override fun onChanged(t: PuzzleState?) {
         when (t) {
@@ -61,7 +71,7 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
                 val tileSecond = movementData.second
                 moveTile(tileFirst, tileSecond)
                 touchHelper.attachToRecyclerView(null)
-               isGameCompleted = true
+                isGameCompleted = true
                 showCompletionDialog(t.message)
 
             }
@@ -81,7 +91,6 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
 
         }
     }
-
 
 
     override fun getLayoutId(position: Int): Int {
@@ -109,8 +118,8 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
         val height = recyclerView.height.toFloat() / 3
 
         val tileImageView = (holder as GridViewHolder).view.findViewById<ImageView>(R.id.imgvTile)
-       tileImageView.layoutParams.width = width.toInt()
-       tileImageView.layoutParams.height = height.toInt()
+        tileImageView.layoutParams.width = width.toInt()
+        tileImageView.layoutParams.height = height.toInt()
 
         tileImageView.setImageDrawable(tile)
         //todo: move to stop touch listening
