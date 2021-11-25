@@ -3,7 +3,7 @@
  - state retaining: Android View Model
  - publish subscribe: Live Data
  - UI state management: Kotlin Seal Classes
- - Testing Strategy : Inside-out TDD
+ - Development Strategy : Inside-out TDD
  - Test pyramid:
      - Small tests : 7
      - Medium tests: 4
