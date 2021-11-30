@@ -7,7 +7,7 @@
  - Test pyramid:
      - Small tests : 7
      - Medium tests: 4
-     - Large tests : 2
+     - Large tests : 3
  - Testing tools
      - Espresso
      - RoboElectric
