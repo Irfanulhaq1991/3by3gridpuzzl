@@ -12,6 +12,6 @@
      - Espresso
      - RoboElectric
      - Truth assertion
- - Testing enviroment
+ - Testing environment
      - Emulator
      - JVM

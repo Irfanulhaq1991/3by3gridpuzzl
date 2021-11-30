@@ -107,12 +107,15 @@ class MainActivity : AppCompatActivity(), Observer<PuzzleState>, ItemLayoutMange
         val tileNumber = dataAdapter.get(position) ?: return
         val tileId = resources.getIdentifier("img_$tileNumber", "drawable", packageName)
         val tile = ContextCompat.getDrawable(this, tileId)
+
         val width = recyclerView.width.toFloat() / 3
         val height = recyclerView.height.toFloat() / 3
 
         val tileImageView = (holder as GridViewHolder).view.findViewById<ImageView>(R.id.imgvTile)
         tileImageView.layoutParams.width = width.toInt()
         tileImageView.layoutParams.height = height.toInt()
+
+        tileImageView.tag = tileId
 
         tileImageView.setImageDrawable(tile)
         //todo: move to stop touch listening
